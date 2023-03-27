@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Image To CSV</title>
+</head>
+
+<body>
+    <body>
+        <div class="container d-flex justify-content-center mt-50">
+            <div class="row">
+                <div class="col-md-12">
+                    <center>
+                        <h2>OCR Image to text and table detection</h2>
+                    </center>
+                <form action="" method="post" enctype="multipart/form-data">
+                    <div class="file-drop-area">
+                    {% csrf_token %}
+                    <input class="file-input" type="file" {{form.image}}
+                    <span class="file-message">drag and drop files here</span> 
+                    </div>
+                    <center>
+                    <button type="submit" id="button" class="choose-file-button mt-50 ">Submit</button>
+                    </center>
+                </form>
+                </div>
+            </div>
+        </div>
+</body>
+<script>
+    $(document).on('change', '.file-input', function() {
+        
+
+        var filesCount = $(this)[0].files.length;
+        
+        var textbox = $(this).prev();
+      
+        if (filesCount === 1) {
+          var fileName = $(this).val().split('\\').pop();
+          textbox.text(fileName);
+        } else {
+          textbox.text(filesCount + ' files selected');
+        }
+      });
+    </script>
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        background: linear-gradient(to right, #8E24AA, #b06ab3);
+        color: #D7D7EF;
+        font-family: 'Lato', sans-serif;
+      }
+      
+      h2 {
+        margin: 50px 0;
+      }
+      
+      
+      
+      .file-drop-area {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 450px;
+        height: 200px;
+        max-width: 100%;
+        padding: 25px;
+        border: 1px dashed rgba(255, 255, 255, 0.4);
+        border-radius: 3px;
+        transition: 0.2s;
+       
+      }
+      
+      .choose-file-button {
+        flex-shrink: 0;
+        background-color: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 3px;
+        padding: 8px 15px;
+        margin-right: 10px;
+        font-size: 12px;
+        text-transform: uppercase;
+      }
+      
+      .file-message {
+        padding: 33%;
+        font-size: small;
+        font-weight: 300;
+        line-height: 1.4;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      
+      .file-input {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        cursor: pointer;
+        opacity: 0;
+        
+      }
+      
+      .mt-100{
+          margin-top:100px;
+      }
+      .mt-50{
+        margin-top:50px;
+    }
+    </style>
+</html>
